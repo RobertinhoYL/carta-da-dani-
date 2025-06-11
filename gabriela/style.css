@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  background: linear-gradient(135deg, #ffe2ec, #fffafc);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  background-color: #ff69b4;
+  animation: float 8s ease-in-out infinite;
+  opacity: 0.8;
+  transform: rotate(45deg);
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -50%;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 50%;
+}
+
+.heart-1 { width: 30px; height: 30px; top: 10%; left: 5%; background-color: #f44336; }
+.heart-2 { width: 40px; height: 40px; top: 80%; left: 15%; background-color: #ff4d6e; }
+.heart-3 { width: 25px; height: 25px; top: 20%; left: 80%; background-color: #c62828; }
+.heart-4 { width: 35px; height: 35px; top: 60%; left: 90%; background-color: #e91e63; }
+.heart-5 { width: 28px; height: 28px; top: 40%; left: 10%; background-color: #ff69b4; }
+.heart-6 { width: 45px; height: 45px; top: 5%;  left: 60%; background-color: #d81b60; }
+.heart-7 { width: 32px; height: 32px; top: 90%; left: 40%; background-color: #ad1457; }
+.heart-8 { width: 38px; height: 38px; top: 25%; left: 30%; background-color: #880e4f; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(-45deg); }
+  50% { transform: translateY(-20px) rotate(-45deg); }
+  100% { transform: translateY(0) rotate(-45deg); }
+}
+
+.envelope {
+  width: 620px;
+  height: 420px;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.envelope-top {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #f44336, #c62828);
+  clip-path: polygon(0 0, 100% 0, 50% 65%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  border-radius: 10px 10px 0 0;
+  transition: transform 1s ease;
+  transform-origin: top;
+  box-shadow: inset 0 -4px 12px #8b0000, 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.envelope.open .envelope-top {
+  transform: rotateX(-180deg);
+}
+
+.envelope-bottom {
+  width: 100%;
+  height: 100%;
+  background: #fffdfd;
+  border: 4px solid #c62828;
+  border-radius: 10px;
+  padding: 40px 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), inset 0 0 20px #ffe6ea;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.letter {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 1s ease 0.5s;
+}
+
+.envelope.open .letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.envelope:not(.open) .letter {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+}
+
+.letter h1 {
+  font-size: 2.5rem;
+  color: #a30000;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.typewriter-text {
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 1.8;
+  text-align: justify;
+  white-space: pre-wrap;
+  min-height: 180px;
+}
+
+.signature {
+  margin-top: 30px;
+  font-size: 1.8rem;
+  color: #b71c1c;
+  text-align: right;
+  font-style: italic;
+}
+
+.hint {
+  margin-top: 25px;
+  font-size: 1rem;
+  color: #7a2b2b;
+  font-style: italic;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 700px) {
+  .envelope {
+    width: 95vw;
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+
+  .envelope-bottom {
+    padding: 20px 15px;
+  }
+
+  .letter h1 {
+    font-size: 1.8rem;
+  }
+
+  .typewriter-text {
+    font-size: 1rem;
+  }
+
+  .signature {
+    font-size: 1.3rem;
+  }
+
+  .hint {
+    font-size: 0.9rem;
+  }
+}
