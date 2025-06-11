@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Minha Baixinha</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="heart-container">
+    <div class="heart heart-1"></div>
+    <div class="heart heart-2"></div>
+    <div class="heart heart-3"></div>
+    <div class="heart heart-4"></div>
+    <div class="heart heart-5"></div>
+    <div class="heart heart-6"></div>
+    <div class="heart heart-7"></div>
+    <div class="heart heart-8"></div>
+  </div>
+
+  <div class="container">
+    <div class="envelope" onclick="abrirEnvelope()">
+      <div class="envelope-top"></div>
+      <div class="envelope-bottom">
+        <div class="letter">
+          <h1>Para minha baixinha</h1>
+          <p class="typewriter-text" id="texto"></p>
+          <div class="signature">Com amor ❤️</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint">Clique no envelope para abrir</div>
+  </div>
+
+  <script>
+    const texto = `Com todo meu coração eu digo que te quero, obrigada por ser quem eu mais precisava e
+      eu sempre penso em te encontrar, te ver, te beijar, mas nada seria o suficiente para mostrar o quanto
+      eu quero ter você. Poderia falar muitas coisas, mas todas as músicas que já te dediquei mostram o que sinto.`;
+
+    const typewriter = document.getElementById("texto");
+    let i = 0;
+    let isEnvelopeOpen = false; 
+
+    function abrirEnvelope() {
+      const envelope = document.querySelector(".envelope");
+      
+      if (!isEnvelopeOpen) {
+        
+        envelope.classList.add("open");
+        if (i === 0) digitarTexto();
+        isEnvelopeOpen = true;
+      } else {
+        
+        envelope.classList.remove("open");
+        isEnvelopeOpen = false;
+        
+        typewriter.textContent = ""; 
+        i = 0; 
+      }
+    }
+
+    function digitarTexto() {
+      if (i < texto.length) {
+        typewriter.textContent += texto.charAt(i);
+        i++;
+        setTimeout(digitarTexto, 40);
+      }
+    }
+  </script>
+</body>
+</html>
